@@ -23,8 +23,8 @@ module.exports.routes = {
   * `assets` directory)                                                      *
   *                                                                          *
   ***************************************************************************/
-
-  'GET /':							{ view: 'pages/homepage' },
+ 
+  'GET /':							'redirect/login',
   'GET /login':					{ view: 'pages/entrance/login'}
 
   /***************************************************************************
