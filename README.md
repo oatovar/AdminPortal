@@ -1,4 +1,4 @@
-# admin-portalv-1
+# Admin Portal
 
 a [Sails v1](https://sailsjs.com) application
 
