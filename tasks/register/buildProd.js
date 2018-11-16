@@ -27,4 +27,3 @@ module.exports = function(grunt) {
     'clean:afterBuildProd'
   ]);
 };
-
