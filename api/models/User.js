@@ -30,5 +30,6 @@ module.exports = {
 		username: { type: 'string', required: true },
 		password: { type: 'string', required: true },
   },
+	tableName: 'Admin-Users',
 
 };

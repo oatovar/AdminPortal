@@ -6,31 +6,40 @@
  */
 
 module.exports = async function login(req, res) {
-	let submittedUsername = req.param('inputEmail');
-	let submittedPassword = req.param('inputPassword');
+	let submittedUsername = req.body.username;
+	let submittedPassword = req.body.password;
 
-	if (submittedUsername === null && submittedPassword === null) {
-		res.send('No creds.');
-	}
+	// if (submittedUsername === null && submittedPassword === null) {
+	// 	res.send('No creds.');
+	// }
+	//
+	// let user = User.find({
+	//
+	// });
 
-	let user = User.findOne({
-		username: submittedUsername,
-	});
+	var db = sails.getDatastore().manager;
 
-	await console.log(req.param('inputEmail'));
-	await console.log(req.param('inputPassword'));
+	let user = db.collection('Admin-Users').find({"username": submittedUsername}).toArray(console.log);
 
-	if (!user) {
-		console.log('User not found!');
-		return res.redirect('/login');
-	}
-	if (submittedPassword !== user.password) {
-		console.log('Passwords did not match up!');
-		return res.redirect('/login');
-	}
-	else {
-		console.log('Credentials validated');
-	}
+	await console.log("Username Submitted: " + submittedUsername);
+	await console.log("Password Submitted: " + submittedPassword);
 
-	return res.view('pages/dashboard');
+	console.log(user);
+
+	// if (!user) {
+	// 	console.log('User not found!');
+	// 	return res.redirect('/login');
+	// }
+	//
+	// await console.log(user);
+	//
+	// if (submittedPassword !== user.password) {
+	// 	console.log('Passwords did not match up!');
+	// 	return res.redirect('/login');
+	// }
+	// else {
+	// 	console.log('Credentials validated');
+	// }
+
+	return res.view('pages/dashboard', {profile: user});
 };
