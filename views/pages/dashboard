@@ -1,2 +1,0 @@
-<%=profile.firstName%>
-<%=profile.lastName%>
