@@ -24,7 +24,8 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
   'GET /':              'redirect/login',
-  'GET /login':					{ view: 'pages/entrance/login'}
+  'GET /login':					{ view: 'pages/entrance/login'},
+	'POST /login':				'entrance/login-controller',
 
   /***************************************************************************
   *                                                                          *
