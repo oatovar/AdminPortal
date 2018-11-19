@@ -6,32 +6,18 @@
  */
 
 module.exports = async function login(req, res) {
-	let submittedUsername = req.body.username;
-	let submittedPassword = req.body.password;
-
-	if (submittedUsername === null && submittedPassword === null) {
-		res.send('No creds.');
+	if (req.body.username === null || req.body.password === null) {
+		return res.redirect('/login');
 	}
 
 	let user = await User.findOne({
-		username: submittedUsername,
+		username: req.body.username,
+		password: req.body.password
 	});
 
-	console.log(user);
-
-	if (user === null) {
-		console.log('User not found!');
+	if (user === undefined) {
 		return res.redirect('/login');
-	}
-
-	if (submittedPassword !== user.password) {
-		console.log('Passwords did not match up!');
-		console.log('Submitted: ' + submittedPassword);
-		console.log('Expected: ' + user.password);
-		return res.redirect('/login');
-	}
-	else {
-		console.log('Credentials validated');
+	} else {
 		return res.view('pages/dashboard', {profile: user});
 	}
 };
