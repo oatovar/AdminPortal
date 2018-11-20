@@ -21,7 +21,7 @@
     "@sailshq/eslint": "^4.19.3"
   },
   "scripts": {
-    "start": "NODE_ENV=production MONGO=${MONGO} node app.js",
+    "start": "NODE_ENV=production MONGO=${MONGO} REDIS_URL=${REDIS_URL} node app.js",
     "test": "npm run lint && npm run custom-tests && echo 'Done.'",
     "lint": "eslint . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
     "custom-tests": "echo \"(No other custom tests yet.)\" && echo"

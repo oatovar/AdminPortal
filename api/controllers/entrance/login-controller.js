@@ -6,18 +6,25 @@
  */
 
 module.exports = async function login(req, res) {
-	if (req.body.username === null || req.body.password === null) {
-		return res.redirect('/login');
-	}
+  if (req.session.isAuthenticated) {
+    return res.send('Already logged in.');
+  }
 
-	let user = await User.findOne({
-		username: req.body.username,
-		password: req.body.password
-	});
+  if (req.body.username === null || req.body.password === null) {
+    return res.redirect('/login');
+  }
 
-	if (user === undefined) {
-		return res.redirect('/login');
-	} else {
-		return res.view('pages/dashboard', {profile: user});
-	}
+  let user = await User.findOne({
+    username: req.body.username,
+    password: req.body.password
+  });
+
+  if (user === undefined) {
+    return res.redirect('/login');
+  } else {
+    req.session.userId = user.username;
+    req.session.role = user.role;
+    req.session.isAuthenticated = true;
+    return res.view('pages/dashboard', {profile: user});
+  }
 };

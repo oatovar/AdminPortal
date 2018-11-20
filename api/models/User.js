@@ -23,13 +23,13 @@ module.exports = {
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
-		firstName: { type: 'string', required: true },
-		middleName: { type: 'string', required: false },
-		lastName: { type: 'string', required: true },
-		role: { type: 'string', required: true },
-		username: { type: 'string', required: true },
-		password: { type: 'string', required: true },
+    firstName: { type: 'string', required: true },
+    middleName: { type: 'string', required: false },
+    lastName: { type: 'string', required: true },
+    role: { type: 'string', required: true },
+    username: { type: 'string', required: true },
+    password: { type: 'string', required: true },
   },
-	tableName: 'Admin-Users',
+  tableName: 'Admin-Users',
 
 };
