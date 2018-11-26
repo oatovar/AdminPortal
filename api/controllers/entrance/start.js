@@ -2,6 +2,10 @@ module.exports = async function start (req, res) {
   if (req.session.isAuthenticated) {
     return res.redirect('/dashboard');
   } else {
-    return res.view('pages/entrance/login');
+    if(req.session.invalidLogin){
+      return res.view('pages/entrance/login', {invalidLogin: true});
+    } else {
+      return res.view('pages/entrance/login', {invalidLogin: false});
+    }
   }
 };

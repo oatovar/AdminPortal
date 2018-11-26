@@ -20,11 +20,12 @@ module.exports = async function login(req, res) {
   });
  
   if (user === undefined) {
+    req.session.invalidLogin = true;
     return res.redirect('/login');
   } else {
+    req.session.invalidLogin = false;
     req.session.user = user;
     req.session.isAuthenticated = true;
     return res.redirect('/dashboard');
   }
  };
-  

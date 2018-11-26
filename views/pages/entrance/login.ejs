@@ -9,4 +9,10 @@
     <button class="btn btn-lg btn-dark btn-block" type="submit">Sign in</button>
     <p class="mt-5 mb-3 text-muted">Hill & Tovar &copy; 2017-2018</p>
   </form>
+
+  <% if(invalidLogin) { %>
+    <p>Invalid credentials. Please login using your username and password.</p>
+  <% } %>
 </div>
+
+
