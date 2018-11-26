@@ -28,8 +28,4 @@ module.exports = async function login(req, res) {
     req.session.isAuthenticated = true;
     return res.redirect('/dashboard');
   }
-<<<<<<< HEAD
- };
-=======
 };
->>>>>>> d9739b2fd00d7b6cc13c4dfb2fc30d908ed874cb
