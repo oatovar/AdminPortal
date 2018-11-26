@@ -9,16 +9,16 @@ module.exports = async function login(req, res) {
   if (req.session.isAuthenticated) {
     return res.redirect('/dashboard');
   }
- 
+
   if (req.body.username === null || req.body.password === null) {
     return res.redirect('/login');
   }
- 
+
   let user = await User.findOne({
     username: req.body.username,
     password: req.body.password
   });
- 
+
   if (user === undefined) {
     return res.redirect('/login');
   } else {
@@ -26,5 +26,4 @@ module.exports = async function login(req, res) {
     req.session.isAuthenticated = true;
     return res.redirect('/dashboard');
   }
- };
-  
+};
