@@ -23,9 +23,9 @@ module.exports.routes = {
   * `assets` directory)                                                      *
   *                                                                          *
   ***************************************************************************/
-  'GET /':              'redirect/login',
-  'GET /login':					{ view: 'pages/entrance/login'},
+  'GET /login':					'entrance/start',
   'POST /login':				'entrance/login-controller',
+  'GET /dashboard':     'dashboard',
   'GET /test':					{ action: 'test'},
   'GET /logout':				{ action: 'entrance/logout'},
 
