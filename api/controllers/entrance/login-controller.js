@@ -9,16 +9,16 @@ module.exports = async function login(req, res) {
   if (req.session.isAuthenticated) {
     return res.redirect('/dashboard');
   }
- 
+
   if (req.body.username === null || req.body.password === null) {
     return res.redirect('/login');
   }
- 
+
   let user = await User.findOne({
     username: req.body.username,
     password: req.body.password
   });
- 
+
   if (user === undefined) {
     req.session.invalidLogin = true;
     return res.redirect('/login');
@@ -28,4 +28,8 @@ module.exports = async function login(req, res) {
     req.session.isAuthenticated = true;
     return res.redirect('/dashboard');
   }
+<<<<<<< HEAD
  };
+=======
+};
+>>>>>>> d9739b2fd00d7b6cc13c4dfb2fc30d908ed874cb
