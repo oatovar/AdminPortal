@@ -1,25 +1,4 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
-
-    <title>Admin Links</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <!--link href="dashboard.css" rel="stylesheet"-->
-  </head>
-
-
-
-
-  <body>
+<body>
     <div class="container-fluid">
       <div class="column">
           <div class="col-12 text-center">
@@ -27,7 +6,6 @@
               Welcome <%=user.firstName%>!
             </h1>
           </div>
-
 
           <div class="container-fluid">
               <div class="row">
@@ -41,13 +19,11 @@
                         </tr>
                       </thead>
                       <tbody>
-                          <% for(let i = 0; i < 5; i++) { %>
+                          <% for(let key in globalLinks) { %>
                             <tr>
-                              <td>Here is description number <%=i%></td>
-                              <td>
-                                <a href='https://www.google.com'>
-                                    Here is clickable link number <%=i%>
-                                </a>
+                              <td><%=key%></td>
+                              <td >
+                                <a href='<%=globalLinks[key]%>'> <%=globalLinks[key]%></a>
                               </td>
                             </tr>
                           <% } %>
@@ -70,13 +46,11 @@
                         </tr>
                       </thead>
                       <tbody>
-                          <% for(let i = 0; i < 5; i++) { %>
+                          <% for(let key in groupLinks) { %>
                             <tr>
-                              <td>Here is description number <%=i%></td>
+                              <td><%=key%></td>
                               <td>
-                                <a href='https://www.google.com'>
-                                    Here is clickable link number <%=i%>
-                                </a>
+                                <a href='<%=groupLinks[key]%>'> <%=groupLinks[key]%></a>
                               </td>
                             </tr>
                           <% } %>
@@ -92,25 +66,4 @@
               <a href="/logout"><button class="btn btn-danger btn-lg">Logout</button></a>
             </div>
       </div>
-
     </div>
-
-
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-
-    <!-- Icons -->
-    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-    <script>
-      feather.replace()
-    </script>
-
-  </body>
-</html>
