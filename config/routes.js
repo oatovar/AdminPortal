@@ -28,6 +28,8 @@ module.exports.routes = {
   'GET /dashboard':     'dashboard',
   'GET /test':					{ action: 'test'},
   'GET /logout':				{ action: 'entrance/logout'},
+  'POST /users/update': { action: 'database/add-link'},
+  'GET /users':         { action: 'database/users'},
 
   /***************************************************************************
   *                                                                          *

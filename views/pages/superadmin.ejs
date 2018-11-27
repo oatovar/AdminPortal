@@ -1,0 +1,15 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Super Admin Dashboard</a>
+    </nav>
+    <% for (let group in userGroups) { %>
+    <div class="col-8-md mx-auto">
+        <form class="form-group" enctype="application/x-www-form-urlencoded" action="/users/update" method="POST">
+            <h4>User Group: <%=userGroups[group].Group%></h4>
+            <% for (let link in userGroups[group].Links) { %>
+                <%= link %><input type="text" value="<%= userGroups[group].Links[link] %>"/><br>
+            <% } %>
+        </form>
+    </div>
+    <% } %>
+</div>
