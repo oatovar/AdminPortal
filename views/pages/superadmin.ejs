@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark bg-dark mb-4 justify-content-between">
+<nav class="navbar navbar-dark bg-dark mb-4 justify-content-between sticky-top">
   <a class="navbar-brand" href="#">Super Admin Dashboard</a>
   <button type="button" class="btn btn-lg btn-danger" onclick="window.location='/logout'" name="Logout">Logout</button>
 </nav>
@@ -6,31 +6,71 @@
   <% for (let group in userGroups) { %>
   <div class="row">
     <div class="col-md-6 mx-auto">
-      <form class="form-group" id="group-<%=group%>" enctype="application/x-www-form-urlencoded" action="/users/update" method="POST">
-        <h4>User Group:
-          <%=userGroups[group].Group%>
+      <form class="form-group" id="<%=userGroups[group].Group%>" enctype="application/x-www-form-urlencoded" action="/users/update" method="POST">
+        <h4>
+          User Group: <%=userGroups[group].Group%>
         </h4>
         <% for (let link in userGroups[group].Links) { %>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Name</span>
+          <div class="input-group my-3 links">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Name</span>
+            </div>
+            <input text="text" class="form-control" value="<%=link%>" />
+            <div class="input-group-prepend">
+              <span class="input-group-text">Link</span>
+            </div>
+            <input type="text" class="form-control" value="<%=userGroups[group].Links[link]%>" />
+            <button type="button" class="btn btn-outline-danger ml-2 delete-link"><i class="fas fa-trash"></i></button>
           </div>
-          <input text="text" class="form-control" value="<%= link %>" />
-          <div class="input-group-prepend">
-            <span class="input-group-text">Link</span>
-          </div>
-          <input type="text" class="form-control" value="<%= userGroups[group].Links[link] %>" /><br>
-        </div>
         <% } %>
         <div class="input-group">
-          <button type="button" class="btn btn-lg btn-success mr-1">Add</button>
-          <button type="submit" class="btn btn-lg btn-dark">Save</button>
+          <button type="button" class="btn btn-lg btn-success mr-1 add-btn">Add</button>
+          <button type="submit" class="btn btn-lg btn-dark save-btn">Save</button>
         </div>
       </form>
     </div>
   </div>
   <% } %>
 </div>
+<!--Loading jQuery-->
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<!--Client-Side JavaScript-->
 <script type="text/javascript">
-  // TODO: Implement addition and deletion of rows.
+  // Load the following jQuery script upon loading the page.
+  $(document).ready(function() {
+    // We will use this variable to hold the amount of links within a form group.
+    let linkCount = 0;
+
+    // This is the HTML we will be appending to our forms dynamically.
+    let inputGroup =
+`  <div class="input-group mb-3 links">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Name</span>
+    </div>
+    <input text="text" class="form-control" value="" />
+    <div class="input-group-prepend">
+      <span class="input-group-text">Link</span>
+    </div>
+    <input type="text" class="form-control" value="" />
+    <button type="button" class="btn btn-outline-danger ml-2 delete-link"><i class="fas fa-trash"></i></button>
+  </div>`;
+
+    $('.delete-link').on('click', function() {
+      console.log('TODO: Dynamically remove form field.');
+      $(this).parent('div').remove();
+    });
+
+    $('.add-btn').on('click', function() {
+      console.log("Input Group HTML:\n" + inputGroup);
+      let wrapper = $(this).parent('div');
+      wrapper.prev().after(inputGroup);
+      $('.delete-link').on('click', function() {
+        $(this).parent('div').remove();
+      });
+    });
+  });
 </script>
