@@ -11,21 +11,21 @@
           User Group: <%=userGroups[group].Group%>
         </h4>
         <% for (let link in userGroups[group].Links) { %>
-          <div class="input-group my-3 links">
+          <div class="input-group my-3 link">
             <div class="input-group-prepend">
               <span class="input-group-text">Name</span>
             </div>
-            <input text="text" class="form-control" value="<%=link%>" />
-            <div class="input-group-prepend">
+            <input text="text" class="form-control link-name" name="" value="<%=link%>" />
+            <div class="input-group-prepend ml-2">
               <span class="input-group-text">Link</span>
             </div>
-            <input type="text" class="form-control" value="<%=userGroups[group].Links[link]%>" />
+            <input type="text" class="form-control link-url" name="" value="<%=userGroups[group].Links[link]%>" />
             <button type="button" class="btn btn-outline-danger ml-2 delete-link"><i class="fas fa-trash"></i></button>
           </div>
         <% } %>
         <div class="input-group">
           <button type="button" class="btn btn-lg btn-success mr-1 add-btn">Add</button>
-          <button type="submit" class="btn btn-lg btn-dark save-btn">Save</button>
+          <button type="button" class="btn btn-lg btn-dark save-btn">Save</button>
         </div>
       </form>
     </div>
@@ -38,7 +38,7 @@
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous">
 </script>
-<!--Client-Side JavaScript-->
+<!--Client-Side JavaScript For Dashboard-->
 <script type="text/javascript">
   // Load the following jQuery script upon loading the page.
   $(document).ready(function() {
@@ -51,11 +51,11 @@
     <div class="input-group-prepend">
       <span class="input-group-text">Name</span>
     </div>
-    <input text="text" class="form-control" value="" />
-    <div class="input-group-prepend">
+    <input text="text" class="form-control link-name" value="" />
+    <div class="input-group-prepend ml-2">
       <span class="input-group-text">Link</span>
     </div>
-    <input type="text" class="form-control" value="" />
+    <input type="text" class="form-control link-url" value="" />
     <button type="button" class="btn btn-outline-danger ml-2 delete-link"><i class="fas fa-trash"></i></button>
   </div>`;
 
@@ -71,6 +71,26 @@
       $('.delete-link').on('click', function() {
         $(this).parent('div').remove();
       });
+    });
+
+    $('.save-btn').on('click', function() {
+      let form = $(this).closest('form');
+
+      form.find('input').each(function(i) {
+        let index = Math.floor(i/2); // Used to line up the inputs and values
+        if ($(this).hasClass('link-name')) {
+          $(this).attr('name', 'link-name-'.concat(index));
+          console.log(this);
+        }
+        else if ($(this).hasClass('link-url')) {
+          $(this).attr('name', 'link-url-'.concat(index));
+          console.log(this);
+        }
+        else {
+          console.log('The input did not have either link class.');
+        }
+      });
+      console.log(form.serialize());
     });
   });
 </script>
