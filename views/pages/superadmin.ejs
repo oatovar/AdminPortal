@@ -1,7 +1,7 @@
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Super Admin Dashboard</a>
+</nav>
 <div class="container-fluid">
-    <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Super Admin Dashboard</a>
-    </nav>
     <% for (let group in userGroups) { %>
     <div class="col-8-md mx-auto">
         <form class="form-group" enctype="application/x-www-form-urlencoded" action="/users/update" method="POST">
