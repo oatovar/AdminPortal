@@ -1,15 +1,36 @@
-<nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Super Admin Dashboard</a>
+<nav class="navbar navbar-dark bg-dark mb-4 justify-content-between">
+  <a class="navbar-brand" href="#">Super Admin Dashboard</a>
+  <button type="button" class="btn btn-lg btn-danger" onclick="window.location='/logout'" name="Logout">Logout</button>
 </nav>
 <div class="container-fluid">
-    <% for (let group in userGroups) { %>
-    <div class="col-8-md mx-auto">
-        <form class="form-group" enctype="application/x-www-form-urlencoded" action="/users/update" method="POST">
-            <h4>User Group: <%=userGroups[group].Group%></h4>
-            <% for (let link in userGroups[group].Links) { %>
-                <%= link %><input type="text" value="<%= userGroups[group].Links[link] %>"/><br>
-            <% } %>
-        </form>
+  <% for (let group in userGroups) { %>
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <form class="form-group" id="group-<%=group%>" enctype="application/x-www-form-urlencoded" action="/users/update" method="POST">
+        <h4>User Group:
+          <%=userGroups[group].Group%>
+        </h4>
+        <% for (let link in userGroups[group].Links) { %>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Name</span>
+          </div>
+          <input text="text" class="form-control" value="<%= link %>" />
+          <div class="input-group-prepend">
+            <span class="input-group-text">Link</span>
+          </div>
+          <input type="text" class="form-control" value="<%= userGroups[group].Links[link] %>" /><br>
+        </div>
+        <% } %>
+        <div class="input-group">
+          <button type="button" class="btn btn-lg btn-success mr-1">Add</button>
+          <button type="submit" class="btn btn-lg btn-dark">Save</button>
+        </div>
+      </form>
     </div>
-    <% } %>
+  </div>
+  <% } %>
 </div>
+<script type="text/javascript">
+  // TODO: Implement addition and deletion of rows.
+</script>
