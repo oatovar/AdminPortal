@@ -1,12 +1,12 @@
 <nav class="navbar navbar-dark bg-dark mb-4 justify-content-between sticky-top">
   <a class="navbar-brand" href="#">Super Admin Dashboard</a>
-  <button type="button" class="btn btn-lg btn-danger" onclick="window.location='/logout'" name="Logout">Logout</button>
+  <button type="button" class="btn btn-danger" onclick="window.location='/logout'" name="Logout">Logout</button>
 </nav>
 <div class="container-fluid">
   <% for (let group in userGroups) { %>
   <div class="row">
     <div class="col-md-6 mx-auto">
-      <form class="form-group" id="<%=userGroups[group].Group%>" enctype="application/x-www-form-urlencoded" action="/users/update" method="POST">
+      <form class="form-group" id="<%=userGroups[group].Group%>"enctype="application/x-www-form-urlencoded" action="/users/update" method="POST">
         <h4>
           User Group: <%=userGroups[group].Group%>
         </h4>
@@ -47,25 +47,26 @@
 
     // This is the HTML we will be appending to our forms dynamically.
     let inputGroup =
-`  <div class="input-group mb-3 links">
-    <div class="input-group-prepend">
-      <span class="input-group-text">Name</span>
-    </div>
-    <input text="text" class="form-control link-name" value="" />
-    <div class="input-group-prepend ml-2">
-      <span class="input-group-text">Link</span>
-    </div>
-    <input type="text" class="form-control link-url" value="" />
-    <button type="button" class="btn btn-outline-danger ml-2 delete-link"><i class="fas fa-trash"></i></button>
-  </div>`;
+    `  <div class="input-group mb-3 links">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Name</span>
+        </div>
+        <input text="text" class="form-control link-name" value="" />
+        <div class="input-group-prepend ml-2">
+          <span class="input-group-text">Link</span>
+        </div>
+        <input type="text" class="form-control link-url" value="" />
+        <button type="button" class="btn btn-outline-danger ml-2 delete-link"><i class="fas fa-trash"></i></button>
+      </div>`;
+
+    let groupNameInput = `<input type="hidden" class="group-input" name="group" value=""/>`;
+
 
     $('.delete-link').on('click', function() {
-      console.log('TODO: Dynamically remove form field.');
       $(this).parent('div').remove();
     });
 
     $('.add-btn').on('click', function() {
-      console.log("Input Group HTML:\n" + inputGroup);
       let wrapper = $(this).parent('div');
       wrapper.prev().after(inputGroup);
       $('.delete-link').on('click', function() {
@@ -80,17 +81,19 @@
         let index = Math.floor(i/2); // Used to line up the inputs and values
         if ($(this).hasClass('link-name')) {
           $(this).attr('name', 'link-name-'.concat(index));
-          console.log(this);
+          console.log($(this).val());
         }
         else if ($(this).hasClass('link-url')) {
           $(this).attr('name', 'link-url-'.concat(index));
-          console.log(this);
+          console.log($(this).val());
         }
         else {
-          console.log('The input did not have either link class.');
+          console.log('The input did not have either link class; it will not be modified.');
         }
       });
-      console.log(form.serialize());
+      $(this).parent('div').prepend(groupNameInput);
+      form.find('.group-input').val(form.attr('id'));
+      form.submit();
     });
   });
 </script>
