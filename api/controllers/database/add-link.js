@@ -40,7 +40,7 @@ module.exports = async function addLink(req, res) {
     }).set({
       'Links': links,
     });
-    return res.redirect('/users');
+    return res.redirect('/Management');
   } catch (err) {
     sails.log.debug(err);
     return res.status(500).send('An error has occurred. Please try again. Contact an admin '
